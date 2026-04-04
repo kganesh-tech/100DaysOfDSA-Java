@@ -1,1 +1,59 @@
 
+// Problem: Sort Colors
+// Pattern: Two Pointers (Dutch National Flag Algorithm)
+
+//Approach:
+- Use three pointers: low, mid, high
+- low → place 0s
+- mid → traverse array
+- high → place 2s
+- If nums[mid] == 0 → swap(low, mid), move both
+- If nums[mid] == 1 → move mid
+- If nums[mid] == 2 → swap(mid, high), move high
+
+//Key Insight:
+Partition array into 3 parts in one pass (O(n))
+//Time Complexity : 0(n)
+//Space Complexity: 0(1)
+
+
+import java.util.*;
+
+class Solution {
+    public static void sortColors(int[] nums) {
+        
+        int low = 0;
+        int mid = 0;
+        int high = nums.length - 1;
+        
+        while (mid <= high) {
+            if(nums[mid] == 0) {
+                
+                int temp = nums[mid];
+                nums[mid] = nums[low];
+                nums[low] = temp;
+                
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                
+                int temp = nums[mid];
+                nums[mid]  = nums[high];
+                nums[high] = temp;
+                
+                high--;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Solution obj = new Solution();
+        
+        int[] nums = {2, 0, 2, 1, 1, 1};
+        obj.sortColors(nums);
+        
+        System.out.println(Arrays.toString(nums));
+    }
+}
+
