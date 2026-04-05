@@ -13,7 +13,7 @@
 Instead of actually modifying the string, we simulate typing using StringBuilder where '#' acts as a backspace to remove the previous character.
 
 // Time Complexity - 0(n)
-// Space Complexity - 0(1)
+// Space Complexity - 0(n)
 
   class Solution {
     public boolean backspaceCompare(String s, String t)  {
