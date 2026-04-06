@@ -15,34 +15,35 @@ Instead of recalculating the sum for every subarray, we reuse the previous windo
 // Time Complexity: O(n)
 // Space Complexity: O(1)
 
-  import java.util.*;
-public class ContainerWithMostWater {
-    public static int maxArea (int[] height) {
-        int left = 0;
-        int right = height.length - 1;
-        int maxArea = 0;
+ import java.util.*;
+public class Main {
+    public static int maxSubarray(int[] arr, int k) {
+        int windowSum = 0;
+        int maxSum = 0;
         
-        while (left < right) {
-            int width = right - left;
-            int h = Math.min (height[left] , height[right]); 
-            int area = width * h;
-            
-            maxArea = Math.max(maxArea , area);
-            
-            
-            if(height[left] < height[right]) {
-                left++;
-                
-            } else {
-                right--;
-            }
+        for (int i = 0; i < k; i++) {
+            windowSum += arr[i];
             
         }
-        return maxArea;
+        
+        maxSum = windowSum;
+        
+        for (int i = k; i< arr.length; i++) {
+            windowSum += arr[i];
+            
+            windowSum -= arr[i - k];
+            
+            maxSum = Math.max(maxSum, windowSum);
+        }
+        return maxSum;
     }
+    
     public static void main(String[] args) {
-        int[] height = { 1,8,6,2,5,4,8,3,7};
-        int result = maxArea(height);
-        System.out.println ("ContainerWithMostWater: " + result);
+        int[] arr = {2,1,5,1,3,2};
+        int k = 3;
+        
+        int result = maxSubarray(arr, k);
+        
+        System.out.println("Maximum sum of subarray of size " + k + " is: " + result);
     }
 }
