@@ -50,7 +50,7 @@ public class Main {
         if (k <= 1) return 0;
         
         int left = 0;
-        int product =0;
+        int product =1;
         int count = 0;
         
         for(int right =0; right < arr.length; right++) {
